@@ -1,4 +1,12 @@
 # Project Overview
-###### The goal of this project will be to assert whether social media sentiment revolving major cryptocurrencies has a strong correlation with short-term price movements. Since 
+###### The goal of this project will be to assert whether social media sentiment revolving major cryptocurrencies has a strong correlation with short-term price movements. Since crypto markets are extremely volatile, we believe it is possible widespread consumer sentiment has the ability to impact prices in the near term. One of the most popular platforms to discuss markets, trading strategies, and especially crypto is Reddit. It is on Reddit where people can share opinions, predictions, and reactions to how policies or socioeconomic events might sway prices.
+###### To achieve our goal of supporting whether consumer sentiment can cause short-term fluctuations in prices, we will combine two primary datasets: social media posts from Reddit using Reddit API like r/Bitcoin or r/CryptoCurrency, as well as past Cryptocurrency data from a site such as CoinGecko API for prices and trade volume. For the Reddit data, we will collect posts over a selected timeframe, clean and process the data, and apply basic analysis techniques to determine whether posts are positive, negative, or neutral sentiment towards a specific currency or crypto in general. Thereafter, the data will be merged with cryptocurrency price fluctuations in the same time interval.
+###### Altogether, by integrating the datasets we will be able to observe whether patterns emerge through visualizations and machine learning techniques that can statistically prove correlations. Through these data techniques, we will be able to identify and describe relationships between strong consumer sentiment and price changes. 
 ## Project Team
-###### Ben Cooper who serves as the and Steven Sanduski
+###### Ben Cooper (bc37) will handle the collection and cleaning of the data, performing an initial analysis, as well as assisting with the writing of the report at the end. This will help develop a solid baseline understanding of the data and identify potential problems early on. He will also be responsible for submitting assignments and keeping track of due dates, keeping the team on schedule and making sure everything runs smooth.
+###### Steven Sanduski (ss206) will be responsible for merging the datasets and performing most of the analysis/machine learning techniques. He will also create various visualizations to better explain the connections between the data to help with the final report. This will be integral to actually answering our research questions as it will provide the foundation of the report.
+## Research Questions
+## Datasets
+## Timeline
+## Constraints
+## Gaps
