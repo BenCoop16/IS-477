@@ -11,20 +11,20 @@
 ###### The first dataset we are going to use is one that will focus on the Reddit posts that talk about different cryptocurrencies.  It will provide the comment posted, what cryptocurrency it was referring to, a timestamp of when the post was made, and some sort of metric that allows us to see the public opinion of the comment (could be something like the number of likes or dislikes it received).  Our second dataset is going to look at the prices of different cryptocurrencies.  It will provide metrics such as the prices at different points in time, the trading volume, etc.  We should be able to use the timestamp metrics from both of these datasets to see how Reddit posts may or may not have affected prices.  
 ## Timeline
 ###### **Week 1**
-###### Finish project plan
-###### Assign team roles
+###### Finish project plan (Both of us will go over our plan after the reviews to make sure it is good to go)
+###### Assign team roles (We will also figure out who will be doing what for the project)
 ###### **Week 2**
-###### Identify data sets
-###### Start looking at usable data
+###### Identify data sets (We are both going to locate the datasets needed for the project)
+###### Start looking at usable data (Steven will look at the chosen datasets to make sure the data is viable and realistic)
 ###### **Week 3**
-###### Start cleaning data
+###### Start cleaning data (Ben will make sure the data is usable and provides enough information to answer our research questions)
 ###### **Week 4**
-###### Work on combining the two data sets in a way that supports our research questions
-###### Possibly create graphics to further support questions
+###### Work on combining the two data sets in a way that supports our research questions (Both of us will start merging the data together to be able to beter analyse how Reddit comments affect crypto prices)
+###### Possibly create graphics to further support questions (Ben will create visuals to better help answer our questions)
 ###### **Week 5**
-###### Finish exploratory analysis and make sure the data accurately support our questions
+###### Finish exploratory analysis and make sure the data accurately support our questions (make sure our questions are answered correctly and effieciently using the datasets we chose)
 ###### **Week 6**
-###### Finish up the project and make sure all requirements are met
+###### Finish up the project and make sure all requirements are met (Both of us will look over the project to make sure everything is good to go)
 
 ## Constraints
 ###### Some constraints that our project might have are the information that we can find on Reddit posts.  It might be a little hard to find exact information released by Reddit, but after a first glance, I think that we should be able to find the information we need.  We also need to make sure that both datasets have timestamps for all of the information, as that is how we are going to be able to answer the questions about our datasets.  It might also be hard to find a lot of data for a small window of time.    
