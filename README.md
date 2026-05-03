@@ -1,5 +1,9 @@
-## Title: Title of your project
-## Contributors: Bulleted list of contributors
+## Reddit Sentiment and Bitcoin Price Correlation
+#### IS 477 Final Project
+
+### Contributors
+#### Ben Cooper and Steven Sanduski
+
 ## Summary: [500-600 words] Description of your project, motivation, research question(s), and any findings.
 ## Data profile: [max2000 words] For each dataset used, describe its structure, content, and characteristics. Specify the location of the dataset files in your project repository. Discuss any ethical or legal constraints associated with the data and explain how the datasets relate to your questions
 ## Data quality: [500-1000 words] Summary of the quality assessment.
