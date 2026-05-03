@@ -1,10 +1,14 @@
 # Reddit Sentiment and Bitcoin Price Correlation
 
 ## Contributors
-- Ben Cooper (bc37) - 
-- Steven Sanduski (ss206) - 
+- Ben Cooper (bc37) - responsible for data collection, data cleaning, preliminary analysis, and writing portions of the final report including the summary, data sections, and references.
+- Steven Sanduski (ss206) - sentiment analysis, data merging and analysis, visualizations, findings, and writing about findings, future work, challenges, and reproducibility.
 
 ## Summary: [500-600 words] Description of your project, motivation, research question(s), and any findings.
+
+
+
+
 ## Data profile: [max2000 words] For each dataset used, describe its structure, content, and characteristics. Specify the location of the dataset files in your project repository. Discuss any ethical or legal constraints associated with the data and explain how the datasets relate to your questions
 ## Data quality: [500-1000 words] Summary of the quality assessment.
 ## Data cleaning: [max 1000 words] Summarize the data cleaning operations you performed and explain how each operation addressed specific data quality issues in your datasets.
