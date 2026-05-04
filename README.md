@@ -61,9 +61,9 @@ This dataset is the price-side component of the project. The daily close price a
 ## Reproducing: Sequence of steps required for someone else to reproduce your results.
 
 ## References: Formatted citations for any papers, datasets, or software used in your project.
-Arctic Shift. (2024). Arctic Shift Reddit Archive API. Retrieved from https://arctic-shift.photon-reddit.com/api/posts/search
-Hutto, C. J., & Gilbert, E. (2014). VADER: A parsimonious rule-based model for sentiment analysis of social media text. Proceedings of the Eighth International AAAI Conference on Weblogs and Social Media.
-McKinney, W. (2010). Data structures for statistical computing in Python. Proceedings of the 9th Python in Science Conference, 51–56. [pandas library]
-Ran, J. (2019). yfinance: Yahoo! Finance market data downloader [Python library]. Retrieved from https://pypi.org/project/yfinance/
+- Arctic Shift. (2024). Arctic Shift Reddit Archive API. Retrieved from https://arctic-shift.photon-reddit.com/api/posts/search
+- Hutto, C. J., & Gilbert, E. (2014). VADER: A parsimonious rule-based model for sentiment analysis of social media text. Proceedings of the Eighth International AAAI Conference on Weblogs and Social Media.
+- McKinney, W. (2010). Data structures for statistical computing in Python. Proceedings of the 9th Python in Science Conference, 51–56. [pandas library]
+- Ran, J. (2019). yfinance: Yahoo! Finance market data downloader [Python library]. Retrieved from https://pypi.org/project/yfinance/
 Reddit. (2024). r/Bitcoin subreddit [Public forum data archived via Arctic Shift]. Reddit, Inc.
-Yahoo Finance. (2024). Bitcoin USD (BTC-USD) historical data [Dataset]. Retrieved via yfinance Python library.
+- Yahoo Finance. (2024). Bitcoin USD (BTC-USD) historical data [Dataset]. Retrieved via yfinance Python library.
