@@ -142,13 +142,13 @@ Click the "Open in Colab" badge at the top of the notebook in GitHub, then just 
 
 If your Colab session disconnects, you'll need to re-run from the top since nothing persists between sessions. The CSV files saved mid-notebook can be downloaded from the Colab file browser on the left sidebar before closing. If your final numbers differ slightly from ours, it's likely because the Arctic Shift API doesn't guarantee the exact same posts on every run, but the conclusions should still hold.
 
-## References: Formatted citations for any papers, datasets, or software used in your project.
--Arctic Shift. (2024). Arctic Shift Reddit Archive API. Retrieved from https://arctic-shift.photon-reddit.com/api/posts/search
--Aroussi, R. (2019). yfinance: Yahoo! Finance market data downloader [Python library]. Retrieved from https://pypi.org/project/yfinance/
--Hunter, J. D. (2007). Matplotlib: A 2D graphics environment. Computing in Science & Engineering, 9(3), 90–95. https://doi.org/10.1109/MCSE.2007.55
--Hutto, C. J., & Gilbert, E. (2014). VADER: A parsimonious rule-based model for sentiment analysis of social media text. Proceedings of the Eighth International AAAI Conference on Weblogs and Social Media.
--McKinney, W. (2010). Data structures for statistical computing in Python. Proceedings of the 9th Python in Science Conference, 51–56.
--Reddit, Inc. (2024). r/Bitcoin subreddit [Public forum data archived via Arctic Shift]. Retrieved from https://www.reddit.com/r/Bitcoin/
--Virtanen, P., et al. (2020). SciPy 1.0: Fundamental algorithms for scientific computing in Python. Nature Methods, 17, 261–272. https://doi.org/10.1038/s41592-019-0686-2
--Yahoo Finance. (2024). Bitcoin USD (BTC-USD) historical data [Dataset]. Retrieved via yfinance Python library.
+## References:
+- Arctic Shift. (2024). Arctic Shift Reddit Archive API. Retrieved from https://arctic-shift.photon-reddit.com/api/posts/search
+- Aroussi, R. (2019). yfinance: Yahoo! Finance market data downloader [Python library]. Retrieved from https://pypi.org/project/yfinance/
+- Hunter, J. D. (2007). Matplotlib: A 2D graphics environment. Computing in Science & Engineering, 9(3), 90–95. https://doi.org/10.1109/MCSE.2007.55
+- Hutto, C. J., & Gilbert, E. (2014). VADER: A parsimonious rule-based model for sentiment analysis of social media text. Proceedings of the Eighth International AAAI Conference on Weblogs and Social Media.
+- McKinney, W. (2010). Data structures for statistical computing in Python. Proceedings of the 9th Python in Science Conference, 51–56.
+- Reddit, Inc. (2024). r/Bitcoin subreddit [Public forum data archived via Arctic Shift]. Retrieved from https://www.reddit.com/r/Bitcoin/
+- Virtanen, P., et al. (2020). SciPy 1.0: Fundamental algorithms for scientific computing in Python. Nature Methods, 17, 261–272. https://doi.org/10.1038/s41592-019-0686-2
+- Yahoo Finance. (2024). Bitcoin USD (BTC-USD) historical data [Dataset]. Retrieved via yfinance Python library.
 
