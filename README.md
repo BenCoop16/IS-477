@@ -120,6 +120,7 @@ Small subgroup sizes for RQ2. When we split df_merged into high and low-upvote g
 VADER also had limits on short titles. A surprising number of r/Bitcoin post titles are short, vague, or question-based. VADER scores most of these as neutral, which is technically correct but not very informative. When a large portion of your posts score near zero, your weekly average sentiment ends up compressed toward neutral regardless of what the community was actually feeling. That's a fundamental limitation of the title-only approach.
 ## Reproducing: Sequence of steps required for someone else to reproduce your results.
 All the code for this project is in one notebook (is477_proj_updated.ipynb) built to run in Google Colab from top to bottom. Here's everything you need to reproduce our results.
+
 **What's in the Repository**
 is477_proj_updated.ipynb — the main notebook
 requirements.txt — all dependencies and versions
