@@ -20,9 +20,7 @@ To answer these questions, Reddit post data was collected from their archive API
 The first of our datasets consists of posts acquired from the r/Bitcoin subreddit on Reddit. The API on Reddit takes a few days to access the data, so instead we used The Arctic Shift Reddit Archive API (https://arctic-shift.photon-reddit.com/api/posts/search), a free and openly accessible archive that does not require API key approval, making it the best alternative to official Reddit API's lengthy individual access process. Data was then accessed using a weekly loop that spanned January 1st 2024 to January 1st 2026, pulling 30 posts a week:
 
 all_posts = []
-
 start_date = datetime(2024, 1, 1)
-
 end_date = datetime(2026, 1, 1)
 
 posts_per_week = 30
