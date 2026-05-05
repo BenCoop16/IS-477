@@ -36,16 +36,27 @@ next_week = current + timedelta(weeks = 1)
 params = {
 
 "subreddit": "Bitcoin",
+
 "after": current.strftime("%Y-%m-%d"),
+
 "before": next_week.strftime("%Y-%m-%d"),
+
 "limit": posts_per_week,
+
 "sort": "asc"
+
 }
+
 response = requests.get("https://arctic-shift.photon-reddit.com/api/posts/search", params = params)
+
 batch = response.json().get('data') or []
+
 if batch:
+
 all_posts.extend(batch)
+
 current = next_week
+
 time.sleep(0.5)
 
 This approach collects posts week by week across the full two-year window, yielding approximately 3,000 posts total. The raw data is stored in the project repository as reddit_bitcoin_raw-2.csv and the cleaned/merged version with bitcoin prices as reddit_btc_merged.csv.  
@@ -57,6 +68,7 @@ This dataset directly supports both research questions. The title field is the i
 The second dataset contains historical weekly price and volume data for Bitcoin (BTC-USD) sourced from Yahoo Finance via the yfinance Python library. Data was retrieved for the same time window as the Reddit dataset: January 1, 2024 through January 1, 2026, using a weekly interval, producing approximately 104 weekly observations:
 
 df_price = yf.download("BTC-USD", start="2024-01-01", end="2026-01-01", interval="1wk")
+
 The raw data is stored as crypto_prices_raw-2.csv and the cleaned/merged version (again) as reddit_btc_merged.csv in the project repository. After cleaning and column renaming, the dataset is structured as a time-series table where each row represents one week of Bitcoin price data. The columns are: date (the week start date, normalized to Monday to align with the Reddit data), open (the opening price in USD for that week), high (the weekly high price in USD), low (the weekly low price in USD), close (the closing price in USD for that week), volume (average daily trading volume for the week in USD), price_change (the difference between the weekly close and open), and price_pct_change (the percentage change from open to close for that week). The close price is the primary metric used for correlation analysis, as it represents the final agreed-upon market price and is the standard measure used in financial research.
 Yahoo Finance data was accessed via yfinance and is freely available for non-commercial and research purposes. One of our considerations was that yfinance is an unofficial third-party wrapper, meaning the underlying data source could change its structure or terms of service at any time. Thus, the dataset should be treated as a snapshot in time of the data at that exact moment and could potentially change down the road. There are no significant ethical constraints associated with this dataset, as it reflects publicly traded market prices and contains no personal information.
 
