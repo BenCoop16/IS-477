@@ -17,39 +17,40 @@ To answer these questions, Reddit post data was collected from their archive API
 
 ## Data profile: [max2000 words] For each dataset used, describe its structure, content, and characteristics. Specify the location of the dataset files in your project repository. Discuss any ethical or legal constraints associated with the data and explain how the datasets relate to your questions
 **First Dataset: Reddit r/Bitcoin Posts**
-The first of our datasets consists of posts acquired from the r/Bitcoin subreddit on Reddit. The API on Reddit takes a few days to access the data, so instead we used The Arctic Shift Reddit Archive API (https://arctic-shift.photon-reddit.com/api/posts/search), a free and openly accessible archive that does not require API key approval, making it the best alternative to official Reddit API's lengthy individual access process. We loaded the data using the code:
+The first of our datasets consists of posts acquired from the r/Bitcoin subreddit on Reddit. The API on Reddit takes a few days to access the data, so instead we used The Arctic Shift Reddit Archive API (https://arctic-shift.photon-reddit.com/api/posts/search), a free and openly accessible archive that does not require API key approval, making it the best alternative to official Reddit API's lengthy individual access process. Data was then accessed using a weekly loop that spanned January 1st 2024 to January 1st 2026, pulling 30 posts a week:
+
 all_posts = []
-batch_after = "2024-01-01"
-batch_before = "2026-01-01"
-url = "https://arctic-shift.photon-reddit.com/api/posts/search"
+start_date = datetime(2024, 1, 1)
+end_date = datetime(2026, 1, 1)
+posts_per_week = 30
+current = start_date
+while current < end_date:
+next_week = current + timedelta(weeks = 1)
+params = {
+"subreddit": "Bitcoin",
+"after": current.strftime("%Y-%m-%d"),
+"before": next_week.strftime("%Y-%m-%d"),
+"limit": posts_per_week,
+"sort": "asc"
+}
+response = requests.get("https://arctic-shift.photon-reddit.com/api/posts/search", params = params)
+batch = response.json().get('data') or []
+if batch:
+all_posts.extend(batch)
+current = next_week
+time.sleep(0.5)
 
-for i in range(20):
-    params = {"subreddit": "Bitcoin", "after": batch_after, "before": batch_before, "limit": 100, "sort": "asc"}
-    response = requests.get(url, params=params)
-    posts = response.json()
-    batch = posts['data']
-    if not batch:
-        print(f"No more data at batch {i}")
-        break
-    all_posts.extend(batch)
-    batch_after = batch[-1]['created_utc']
-    print(f"Batch {i+1}: {len(batch)} posts, total so far: {len(all_posts)}")
-    time.sleep(1)
-
-df_bitcoin = pd.DataFrame(all_posts)[['id', 'title', 'selftext', 'score', 'upvote_ratio', 'num_comments', 'created_utc', 'subreddit']]
-df_bitcoin['timestamp'] = pd.to_datetime(df_bitcoin['created_utc'], unit='s')
-print(df_bitcoin.shape)
-This essentially solves the problem with Arctic Shift's batch limit of 100 Reddit posts at a time by doing a for loop of 20 instances to create a dataframe of 2000 individual subreddit posts from 2024 to 2026. In the end, it creates a dataframe with 2,000 rows of data that should mirror the csv file on github under the name "reddit_bitcoin_raw.csv". This data spans January 1, 2024 through January 1, 2026, with posts retrieved in batches of 100 per request (again, the maximum allowed by the Arctic Shift API). While the raw data is stored in the project repository as reddit_bitcoin_raw.csv, the cleaned version is storedn as reddit_bitcoin_clean.csv in the repository as well.
-The dataset is structured as a flat table where each row represents a single Reddit post. The columns retained from the API response are: id (unique post identifier), title (the post headline, used as the primary text for sentiment analysis), selftext (the full body text of the post), score (the net upvote count, i.e. upvotes minus downvotes), upvote_ratio (the proportion of votes that were upvotes, as a float between 0 and 1), num_comments (the number of comments the post received), subreddit (always “bitcoin” for this dataset), and timestamp (the UTC datetime of post creation, converted from the Unix epoch field created_utc).
-In terms of ethical and legal considerations, all data in this dataset is publicly posted content from a public subreddit and was accessed through a public archive with no authentication required. Reddit’s publicly accessible posts are generally considered suitable for academic and non-commercial research. However, the data does contain usernames and personally identifiable information in post text in some cases, which is why this project restricts its analysis to the title field and aggregate engagement metrics rather than individual-level content. No private messages, user profiles, or restricted subreddit content were accessed. Additionally, while the data is publicly available, researchers using Reddit data should remain cognizant of the platform’s terms of service, which prohibit certain commercial uses of scraped data.
-This dataset directly supports both research questions. The title field is the input for VADER sentiment scoring, while the score and upvote_ratio fields allow segmentation of posts by engagement level, which is necessary for answering the second research question about whether high-upvote posts correlate more strongly with price movements.
+This approach collects posts week by week across the full two-year window, yielding approximately 3,000 posts total. The raw data is stored in the project repository as reddit_bitcoin_raw-2.csv and the cleaned/merged version with bitcoin prices as reddit_btc_merged.csv.  
+The dataset is structured as a flat table where each row represents a single Reddit post. The columns, directly imported from the Arctic Shift API, are: id (unique post identifier), title (the post headline, used as the primary text for sentiment analysis), selftext (the full body text of the post), score (the net upvote count), upvote_ratio (the proportion of votes that were upvotes, as a float between 0 and 1), num_comments (the number of comments the post received), subreddit (always "Bitcoin" for this dataset), and timestamp (the UTC datetime of post creation, converted from the created_utc field).
+In terms of ethical and legal considerations, all data in this dataset consists of publicly posted content from a public subreddit, accessed through a public archive with no authentication required. This project restricts its analysis to the title field and aggregate engagement metrics rather than individual-level content, avoiding any focus on specific users or personal information. No private messages, user profiles, or restricted subreddit content were accessed. Researchers using Reddit data should remain aware of the platform's terms of service, which prohibit certain commercial uses of scraped data — this project is strictly non-commercial and academic in nature.
+This dataset directly supports both research questions. The title field is the input for VADER sentiment scoring, while the score field allows segmentation of posts by engagement level, which is necessary for answering the second research question about whether high-upvote posts correlate more strongly with price movements.
 
 **Second Dataset: Bitcoin Historical Price**
-The second dataset contains historical daily price and volume data for Bitcoin (BTC-USD) sourced from Yahoo Finance via the yfinance Python library. Data was retrieved for the same time window as the Reddit dataset: January 1, 2024 through January 1, 2026. This produced over 700 daily observations. It was uploaded with the following code:
+The second dataset contains historical weekly price and volume data for Bitcoin (BTC-USD) sourced from Yahoo Finance via the yfinance Python library. Data was retrieved for the same time window as the Reddit dataset: January 1, 2024 through January 1, 2026, using a weekly interval, producing approximately 104 weekly observations:
 
-In the Github repository, the raw data is stored as crypto_prices_raw.csv and the cleaned version as crypto_prices_clean.csv in the project repository. The dataset is structured as a time-series table where each row represents one calendar day of bitcoin price fluctuations. After cleaning and renaming, the columns become: date (the trading date, changed/formatted to datetime format), open (the opening price in USD which is what price Bitcoin was at when the markets opened), high (the daily high price in USD), low (the daily low price in USD), close (the closing price in USD, which is the price of Bitcoin when markets closed), and volume (the total trading volume for the day in USD). The close price is the primary metric we used for the correlation analysis, as it represents the final agreed-upon market price for each day and is normally the accepted standard measure for financial research as it represents a financial asset's daily price fluctuations.
-Yahoo Finance data accessed via yfinance is freely available for non-commercial and research purposes. The data itself reflects publicly traded market prices and is not subject to copyright in the same way as original creative works. There are no significant ethical constraints associated with this dataset. One consideration is that yfinance is an unofficial third-party wrapper, meaning the underlying data source (Yahoo Finance) could change its API structure or terms of service at any time, and the dataset should be treated as a snapshot of the data as it existed at collection time rather than a permanently stable source.
-This dataset is the price-side component of the project. The daily close price and price-to-price change metrics are what the sentiment scores are ultimately compared against to evaluate correlation. The shared timestamp structure – both datasets cover the same two-year window with daily granularity – is what makes integration possible.
+df_price = yf.download("BTC-USD", start="2024-01-01", end="2026-01-01", interval="1wk")
+The raw data is stored as crypto_prices_raw-2.csv and the cleaned/merged version (again) as reddit_btc_merged.csv in the project repository. After cleaning and column renaming, the dataset is structured as a time-series table where each row represents one week of Bitcoin price data. The columns are: date (the week start date, normalized to Monday to align with the Reddit data), open (the opening price in USD for that week), high (the weekly high price in USD), low (the weekly low price in USD), close (the closing price in USD for that week), volume (average daily trading volume for the week in USD), price_change (the difference between the weekly close and open), and price_pct_change (the percentage change from open to close for that week). The close price is the primary metric used for correlation analysis, as it represents the final agreed-upon market price and is the standard measure used in financial research.
+Yahoo Finance data was accessed via yfinance and is freely available for non-commercial and research purposes. One of our considerations was that yfinance is an unofficial third-party wrapper, meaning the underlying data source could change its structure or terms of service at any time. Thus, the dataset should be treated as a snapshot in time of the data at that exact moment and could potentially change down the road. There are no significant ethical constraints associated with this dataset, as it reflects publicly traded market prices and contains no personal information.
 
 ## Data quality: [500-1000 words] Summary of the quality assessment.
 ## Data cleaning: [max 1000 words] Summarize the data cleaning operations you performed and explain how each operation addressed specific data quality issues in your datasets.
