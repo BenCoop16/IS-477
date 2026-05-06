@@ -13,7 +13,7 @@ The project is guided by two specific research questions. The first is asks if t
 
 To answer these questions, Reddit post data was collected from their archive API covering January 2024 through January 2026, yielding approximately 3,000 posts. Bitcoin weekly price data for the same period was retrieved via the yfinance library using Yahoo Finance as the underlying source, producing over 100 weekly price observations. After cleaning both datasets, sentiment analysis was applied to each post title to generate a compound sentiment score ranging from -1 (most negative) to +1 (most positive). Weekly average sentiment scores were then computed and merged with the corresponding weekly Bitcoin price metrics to form an integrated dataset suitable for correlation analysis.
 
-[PLACEHOLDER – Findings summary to be added once correlation analysis and visualizations are complete. Update this paragraph with a 2–3 sentence summary of the key numeric results and whether the research questions were supported or refuted.]
+Using linear regression, we found no statistically significant relationship between weekly r/Bitcoin sentiment and Bitcoin's price movement at any level of post engagement. For RQ1, sentiment showed a near-zero correlation with next-week price change (r = -0.0976, p = 0.3244), and for RQ2, splitting by upvote score above the 75th percentile produced a slightly stronger but still non-significant result (r = -0.2167, p = 0.2982), suggesting that Reddit sentiment alone does not reliably predict short-term Bitcoin price movement in this dataset.
 
 ## Data Profile
 **First Dataset: Reddit r/Bitcoin Posts**
