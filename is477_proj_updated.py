@@ -1,15 +1,3 @@
-"""
-is477_proj_updated.py
-Full pipeline: data collection, cleaning, sentiment analysis,
-merging, visualization, and hypothesis testing.
-
-Run with:
-    python is477_proj_updated.py
-
-Dependencies:
-    pip install vaderSentiment yfinance pandas matplotlib scipy requests
-"""
-
 import requests
 import pandas as pd
 import time
