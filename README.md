@@ -4,7 +4,7 @@
 - Ben Cooper (bc37) - responsible for data collection, data cleaning, preliminary analysis, and writing portions of the final report including the summary, data sections, and references.
 - Steven Sanduski (ss206) - sentiment analysis, data merging and analysis, visualizations, findings, and writing about findings, future work, challenges, and reproducibility.
 
-## Summary: [500-600 words] Description of your project, motivation, research question(s), and any findings.
+## Summary
 The goal of this project is to ascertain whether social media sentiment surrounding Bitcoin has a measurable correlation with short-term Bitcoin price jumps. Cryptocurrency markets are widely considered as highly volatile and susceptible to public opinion, where Reddit serves as one of the most active platforms for investors and enthusiasts to discuss their public opinions on. By combining these two unique datasets (Reddit posts from r/Bitcoin and historical Bitcoin price data from Yahoo Finance), this project attempts to quantitavely assess whether a Reddit posts can predict or coincide with near-term Bitcoin price changes through data cleaning, data analysis, sentiment analysis, and hypothesis testing.
 
 Our motivation for this project stems from our shared interest in financial markets and analyzing potential trends that can be used to predict markets. There is also growing support for the notion that social media activity influences financial markets such as in the case of GameStop's stock revival. Bitcoin, in constrast, lacks the fundamental financial statements that analysts often use to gauge prices, making it potentially more sensitive to investor sentiment. We felt Reddit’s r/Bitcoin subreddit, with its massive and highly engaged user base, thus served as a relevant and accurate proxy for the broader cryptocurrency public.
@@ -15,7 +15,7 @@ To answer these questions, Reddit post data was collected from their archive API
 
 [PLACEHOLDER – Findings summary to be added once correlation analysis and visualizations are complete. Update this paragraph with a 2–3 sentence summary of the key numeric results and whether the research questions were supported or refuted.]
 
-## Data profile: [max2000 words] For each dataset used, describe its structure, content, and characteristics. Specify the location of the dataset files in your project repository. Discuss any ethical or legal constraints associated with the data and explain how the datasets relate to your questions
+## Data Profile
 **First Dataset: Reddit r/Bitcoin Posts**
 The first of our datasets consists of posts acquired from the r/Bitcoin subreddit on Reddit. The API on Reddit takes a few days to access the data, so instead we used The Arctic Shift Reddit Archive API (https://arctic-shift.photon-reddit.com/api/posts/search), a free and openly accessible archive that does not require API key approval, making it the best alternative to official Reddit API's lengthy individual access process. Data was then accessed using a weekly loop that spanned January 1st 2024 to January 1st 2026, pulling 30 posts a week:
 
@@ -127,11 +127,16 @@ We also had a problem with API rate limits and Colab session constraints. The Ar
 Small subgroup sizes for RQ2. When we split df_merged into high and low-upvote groups for RQ2, the high-upvote group only had 25 rows. Running a correlation on 25 data points isn't that much which is why it made the RQ2 analysis feel more illustrative than conclusive, and it's something we'd want to address before drawing stronger claims.
 VADER also had limits on short titles. A surprising number of r/Bitcoin post titles are short, vague, or question-based. VADER scores most of these as neutral, which is technically correct but not very informative. When a large portion of your posts score near zero, your weekly average sentiment ends up compressed toward neutral regardless of what the community was actually feeling. That's a fundamental limitation of the title-only approach.
 
-## Reproducing: Sequence of steps required for someone else to reproduce your results.
-All the code for this project is in one notebook (is477_proj_updated.ipynb) built to run in Google Colab from top to bottom. Here's everything you need to reproduce our results.
+## Reproducing
+All the code for this project is in one .py file.  It can be found here: https://github.com/BenCoop16/IS-477/blob/main/is477_proj_updated.py.  Be sure to run this piece of code first and upload the .py file:
+from google.colab import files
+files.upload()
+You should then be good to run the next line of code, which is the following: !python is477_proj_updated.py
+If this doesn't work, then we have also left the .ipynd file in case or errors.
 
 **What's in the Repository**
-is477_proj_updated.ipynb — the main notebook
+is477_proj_updated.py — our main file
+is477_proj_updated.ipynb — our backup file
 requirements.txt — all dependencies and versions
 reddit_bitcoin_raw.csv — raw Reddit posts (3,150 rows)
 reddit_bitcoin_clean.csv — cleaned posts after filtering (2,318 rows)
