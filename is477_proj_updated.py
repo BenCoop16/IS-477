@@ -10,7 +10,6 @@ from datetime import datetime, timedelta
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from scipy.stats import linregress
 
-# ── Data Collection ───────────────────────────────────────────────────────────
 
 all_posts = []
 
@@ -52,7 +51,6 @@ print(df_bitcoin.shape)
 
 df_price = yf.download("BTC-USD", start="2024-01-01", end="2026-01-01", interval="1wk")
 
-# ── Data Quality Check ────────────────────────────────────────────────────────
 
 print("Duplicates:", df_bitcoin.duplicated(subset='id').sum())
 print("\nMissing values:")
@@ -66,7 +64,6 @@ print(df_price.isnull().sum())
 print("\nPrice data types:")
 print(df_price.dtypes)
 
-# ── Data Cleaning ─────────────────────────────────────────────────────────────
 
 df_bitcoin_clean = df_bitcoin[df_bitcoin['selftext'] != '[removed]']
 df_bitcoin_clean = df_bitcoin_clean[df_bitcoin_clean['selftext'] != '[deleted]']
@@ -113,7 +110,6 @@ df_bitcoin_clean.to_csv('reddit_bitcoin_clean.csv', index=False)
 df_price_clean.to_csv('crypto_prices_clean.csv', index=False)
 print("All files saved!")
 
-# ── Sentiment Analysis ────────────────────────────────────────────────────────
 
 analyzer = SentimentIntensityAnalyzer()
 df_bitcoin_clean['sentiment'] = df_bitcoin_clean['title'].apply(
@@ -132,7 +128,6 @@ def label_sentiment(score):
 df_bitcoin_clean['sentiment_label'] = df_bitcoin_clean['sentiment'].apply(label_sentiment)
 print(df_bitcoin_clean['sentiment_label'].value_counts())
 
-# ── Merge ─────────────────────────────────────────────────────────────────────
 
 df_weekly_reddit = df_bitcoin_clean.groupby('week_start').agg(
     post_count       = ('id',              'count'),
@@ -152,7 +147,6 @@ df_merged = pd.merge(df_weekly_reddit, df_price_clean, on='date', how='inner')
 print(df_merged.shape)
 print(df_merged.head())
 
-# ── Visualizations ────────────────────────────────────────────────────────────
 
 # Fig 1: BTC price over time
 fig, ax = plt.subplots(figsize=(14, 5))
@@ -230,7 +224,6 @@ plt.savefig('fig4_scatter_sentiment_vs_price.png', dpi=150)
 plt.close()
 print("Saved → fig4_scatter_sentiment_vs_price.png")
 
-# ── Hypothesis Testing ────────────────────────────────────────────────────────
 
 df_merged['next_week_pct'] = df_merged['price_pct_change'].shift(-1)
 rq1_data = df_merged[['avg_sentiment', 'next_week_pct']].dropna()
